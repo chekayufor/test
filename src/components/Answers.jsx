@@ -1,37 +1,88 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
-import Answer from './Answer';
 
 import { Context } from './ContextProvider';
 
 const Answers = ({ answers }) => {
-  const { handleClick, checkAnswer, condition } = useContext(Context);
+  const { handleChange, checkAnswer, condition, checked } = useContext(Context);
   console.log({ answers });
+  const handleSubmit = e => {
+    e.preventDefault();
+  };
   return (
-    <Box>
-      <ul>
+    <Form onSubmit={handleSubmit}>
+      <Ul>
         {answers.map(answer => {
           return (
-            <Item
-              className={condition ? 'button toggled' : 'button'}
-              key={answer.id}
-              onClick={() => {
-                handleClick(answer);
-                if (answer.correct === true) checkAnswer();
-              }}
-            >
-              <Answer {...answer} />
-            </Item>
+            <Li>
+              <Label>
+                <input
+                  type="radio"
+                  value={answer.id}
+                  checked={checked === answer.id}
+                  onChange={handleChange}
+                />
+                {answer.content}
+              </Label>
+            </Li>
           );
         })}
-      </ul>
-      {/* <button onClick={() => checkAnswer()}>Submit</button> */}
-    </Box>
+      </Ul>
+      {/* <Button type="submit" className="submit-button">
+        Make your choice
+      </Button> */}
+    </Form>
   );
 };
 export default Answers;
 const Box = styled.div`
   font-size: 1.2rem;
 `;
+const Form = styled.form`
+  max-width: 185px;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 20px;
+`;
 
-const Item = styled.li``;
+const Ul = styled.ul`
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+`;
+
+const Li = styled.li`
+&:not(:last-child) {
+  margin-bottom: 10px;
+`;
+
+const Label = styled.label`
+  display: flex;
+  align-items: center;
+  input[type='radio'] {
+    margin: 0 10px 0 0;
+  }
+`;
+
+// .title {
+//   font-weight: bold;
+//   font-size: 18px;
+// }
+
+const Button = styled.button`
+  border: 0;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  cursor: pointer;
+  background-color: #7e57c2;
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 5px;
+  &&:hover {
+    background-color: #673ab7;
+  }
+  &&:active {
+    transform: translateY(1px);
+  }
+`;

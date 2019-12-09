@@ -3,18 +3,25 @@ import styled from 'styled-components';
 
 import { Context } from './ContextProvider';
 import Answers from './Answers';
+import Answer from './Answer';
 
 const Question = () => {
   const { question_list } = useContext(Context);
+  // const { id, title, content, url, answers } = currentQuestion;
   console.log(question_list);
   return (
     <Box>
+      {/* {title}
+      <Answers answers={answers} />
+      <Answer answers={answers} /> */}
       <Ul>
+        <P>Select you answer:</P>
         {question_list.map(({ id, title, content, url, answers }) => {
           return (
             <li>
               {title}
               <Answers answers={answers} />
+              <Answer answers={answers} />
             </li>
           );
         })}
@@ -39,6 +46,10 @@ const Box = styled.div`
   @media (min-width: 600px) {
     display: grid;
   }
+`;
+const P = styled.p`
+  font-weight: bold;
+  font-size: 25px;
 `;
 
 const Ul = styled.ul``;

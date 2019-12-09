@@ -6,20 +6,26 @@ const { Provider } = Context;
 
 const ContextProvider = ({ children }) => {
   const [question_list, setQuestion_list] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState(null);
   const [answer, setAnswer] = useState({});
   const [score, setScore] = useState(0);
   const [condition, setCondition] = useState(false);
+  const [checked, setChecked] = useState('');
 
   useEffect(() => {
-    // console.log({ data });
+    console.log({ data });
     setQuestion_list(data);
+    setCurrentQuestion(data[0]);
   }, []);
 
-  const handleClick = item => {
-    setAnswer(item);
-    console.log(item);
+
+  const handleChange = e => {
+    console.log('e.target.value', e.target.value)
+    setChecked(e.target.value);
+    setAnswer(e);
     setCondition(!condition);
   };
+
   const checkAnswer = () => {
     setScore(score + 1);
   };
@@ -27,12 +33,14 @@ const ContextProvider = ({ children }) => {
   const state = {
     question_list,
     answer,
-    condition
+    condition,
+    checked,
+    currentQuestion
   };
   const actions = {
     setScore,
     setAnswer,
-    handleClick,
+    handleChange,
     checkAnswer
   };
 
