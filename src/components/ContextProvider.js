@@ -6,7 +6,6 @@ const { Provider } = Context;
 
 const ContextProvider = ({ children }) => {
   const [question_list, setQuestion_list] = useState([]);
-  const [answer_list, setAnswer_list] = useState([]);
   const [answer, setAnswer] = useState({});
   const [score, setScore] = useState(0);
   const [condition, setCondition] = useState(false);
@@ -16,10 +15,10 @@ const ContextProvider = ({ children }) => {
     setQuestion_list(data);
   }, []);
 
-  const updateAnswer = item => {
+  const handleClick = item => {
     setAnswer(item);
     console.log(item);
-    setCondition(true);
+    setCondition(!condition);
   };
   const checkAnswer = () => {
     setScore(score + 1);
@@ -27,15 +26,13 @@ const ContextProvider = ({ children }) => {
 
   const state = {
     question_list,
-    answer_list,
     answer,
     condition
   };
   const actions = {
-    setAnswer_list,
     setScore,
     setAnswer,
-    updateAnswer,
+    handleClick,
     checkAnswer
   };
 

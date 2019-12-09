@@ -1,21 +1,31 @@
-[
-  {
+[{
     "id": 1,
     "title": "question 1",
     "type": "text",
     "content": "some kind of text",
     "url": "",
-    "answers": [
-      {
+    "answers": [{
         "id": 1,
         "correct": false,
-        "text": "answer 1",
+        "content": "answer 1",
         "url": ""
       },
       {
         "id": 2,
         "correct": true,
-        "text": "answer 2",
+        "content": "answer 2",
+        "url": ""
+      },
+      {
+        "id": 3,
+        "correct": false,
+        "content": "answer 3",
+        "url": ""
+      },
+      {
+        "id": 4,
+        "correct": false,
+        "content": "answer 4",
         "url": ""
       }
     ]
@@ -26,17 +36,16 @@
     "type": "text",
     "content": "some kind of text",
     "url": "",
-    "answers": [
-      {
+    "answers": [{
         "id": 1,
         "correct": false,
-        "text": "answer 1",
+        "content": "answer 1",
         "url": ""
       },
       {
         "id": 2,
         "correct": true,
-        "text": "answer 2",
+        "content": "answer 2",
         "url": ""
       }
     ]

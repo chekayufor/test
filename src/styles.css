@@ -11,6 +11,11 @@ body {
   overflow-x: hidden;
 }
 
+li {
+  list-style: none;
+  text-decoration: none;
+}
+
 h1 span {
   position: relative;
   top: 20px;
@@ -83,4 +88,8 @@ h1 span:nth-child(14) {
       0 5px 0 #ccc, 0 6px 0 #ccc, 0 7px 0 #ccc, 0 8px 0 #ccc, 0 9px 0 #ccc,
       0 50px 25px rgba(0, 0, 0, 0.2);
   }
+}
+
+.green {
+  background: green;
 }

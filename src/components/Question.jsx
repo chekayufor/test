@@ -5,19 +5,16 @@ import { Context } from './ContextProvider';
 import Answers from './Answers';
 
 const Question = () => {
-  const { question_list, setAnswer_list } = useContext(Context);
+  const { question_list } = useContext(Context);
   console.log(question_list);
-  // const { id, title, content, url, answers } = question_list;
-
   return (
     <Box>
       <Ul>
         {question_list.map(({ id, title, content, url, answers }) => {
-          setAnswer_list(answers);
           return (
             <li>
               {title}
-              <Answers />
+              <Answers answers={answers} />
             </li>
           );
         })}
@@ -31,7 +28,7 @@ const Box = styled.div`
   // margin-left: 10%;
   justify-content: center;
   width: 80%;
-  margin-top: 20px;
+  margin: 20px;
   background: white;
   // padding: 1em;
   border-radius: 3px;
