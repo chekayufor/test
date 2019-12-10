@@ -5,20 +5,25 @@ import { Context } from './ContextProvider';
 import Answers from './Answers';
 
 const Question = () => {
-  const { question_list, currentQuestion } = useContext(Context);
-  console.log(currentQuestion.answers);
-  return (
+  const {
+    question_list,
+    currentQuestion,
+    setIndex,
+    setCurrentQuestion,
+    currentIndex
+  } = useContext(Context);
+  console.log(question_list);
+  console.log({ currentQuestion });
+
+  return question_list.length == 0 ? null : (
     <Box>
       <Ul>
         <P>Select you answer:</P>
-        {question_list.map(({ id, title, content, url, answers }) => {
-          return (
-            <Li key={id}>
-              {title}
-              <Answers answers={answers} />
-            </Li>
-          );
-        })}
+        {currentQuestion.title}
+        <Answers answers={currentQuestion.answers} />
+        <a href="#" onClick={() => setIndex()} className="next">
+          Next &raquo;
+        </a>
       </Ul>
     </Box>
   );

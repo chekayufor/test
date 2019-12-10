@@ -4,16 +4,25 @@ import styled from 'styled-components';
 import { Context } from './ContextProvider';
 
 const Answers = ({ answers }) => {
-  const { handleChange, checkAnswer, condition, setIndex } = useContext(
-    Context
-  );
+  const {
+    handleChange,
+    checkAnswer,
+    condition,
+    setIndex,
+    clicked,
+    currentIndex
+  } = useContext(Context);
   console.log({ answers });
+  console.log({ currentIndex });
+
   return (
     <Form>
       <Ul>
         {answers.map(answer => {
           return (
             <Li
+              //disabled={clicked}
+              className={clicked && 'disabled'}
               key={answer.id}
               onClick={() => {
                 handleChange(answer);
@@ -25,9 +34,6 @@ const Answers = ({ answers }) => {
           );
         })}
       </Ul>
-      <a href="#" onClick={() => setIndex()} className="next">
-        Next &raquo;
-      </a>
     </Form>
   );
 };
@@ -49,8 +55,8 @@ const Ul = styled.ul`
   align-items: center;
 `;
 
-const Li = styled.li`
-border: 0;
+const Li = styled.button`
+  border: 0;
   font-family: inherit;
   font-size: inherit;
   outline: none;
@@ -65,8 +71,9 @@ border: 0;
   &:active {
     transform: translateY(1px);
   }
-&:not(:last-child) {
-  margin-bottom: 10px;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
 `;
 
 const Label = styled.label`

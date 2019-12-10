@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Counter = () => {
   const { score } = useContext(Context);
-
+  console.log({ score });
   return (
     <HBox>
       <TitleCount>counter: {score}</TitleCount>

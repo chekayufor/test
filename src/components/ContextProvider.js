@@ -12,17 +12,21 @@ const ContextProvider = ({ children }) => {
   const [condition, setCondition] = useState(false);
   const [checked, setChecked] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [clicked, setClicked] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
+
 
   useEffect(() => {
     // console.log({ data });
     setQuestion_list(data);
     setCurrentQuestion(data[currentIndex]);
-  }, [currentIndex]);
+  }, []);
 
 
   const handleChange = item => {
     console.log(item)
-    //console.log('e.target.value', e.target.value)
+    setClicked(true);
+    setCurrentIndex(currentIndex + 1)
     setChecked(item);
     setAnswer(item);
     setCondition(!condition);
@@ -32,9 +36,13 @@ const ContextProvider = ({ children }) => {
     if (item === true) setScore(score + 1);
   };
   const setIndex = () => {
-    if (question_list.length >= currentIndex - 1)
-      setCurrentIndex(currentIndex + 1);
-    console.log({ currentIndex })
+    if (currentIndex >= question_list.length) {
+      setGameOver(true);
+      console.log(currentIndex);
+    }
+    else {
+      setCurrentQuestion(question_list[currentIndex]);
+    }
   }
 
   const state = {
@@ -44,14 +52,18 @@ const ContextProvider = ({ children }) => {
     checked,
     currentQuestion,
     checkAnswer,
-    score
+    currentIndex,
+    score,
+    clicked,
+    gameOver
   };
   const actions = {
     setScore,
     setAnswer,
     handleChange,
     checkAnswer,
-    setIndex
+    setIndex,
+    setCurrentQuestion
   };
 
   return <Provider value={{ ...state, ...actions }}> {children} </Provider>;

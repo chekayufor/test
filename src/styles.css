@@ -112,9 +112,15 @@ h1 span:nth-child(14) {
 
 a {
   cursor: pointer;
+  margin: 2rem 0 2rem 0;
+  font-size: 2rem;
 }
 
 a:hover {
   scale: 1.2;
   font-weight: 800;
+}
+
+a.disabled {
+  background-color: #ab9cc700;
 }
