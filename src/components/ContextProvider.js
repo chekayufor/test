@@ -33,7 +33,7 @@ const ContextProvider = ({ children }) => {
   };
 
   const checkAnswer = (item) => {
-    if (item === true) setScore(score + 1);
+    if (item === true && clicked === false) setScore(score + 1);
   };
   const setIndex = () => {
     if (currentIndex >= question_list.length) {
@@ -42,6 +42,7 @@ const ContextProvider = ({ children }) => {
     }
     else {
       setCurrentQuestion(question_list[currentIndex]);
+      setClicked(false);
     }
   }
 
@@ -63,7 +64,8 @@ const ContextProvider = ({ children }) => {
     handleChange,
     checkAnswer,
     setIndex,
-    setCurrentQuestion
+    setCurrentQuestion,
+    setClicked
   };
 
   return <Provider value={{ ...state, ...actions }}> {children} </Provider>;

@@ -4,14 +4,9 @@ import styled from 'styled-components';
 import { Context } from './ContextProvider';
 
 const Answers = ({ answers }) => {
-  const {
-    handleChange,
-    checkAnswer,
-    condition,
-    setIndex,
-    clicked,
-    currentIndex
-  } = useContext(Context);
+  const { handleChange, checkAnswer, clicked, currentIndex } = useContext(
+    Context
+  );
   console.log({ answers });
   console.log({ currentIndex });
 

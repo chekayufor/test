@@ -5,13 +5,7 @@ import { Context } from './ContextProvider';
 import Answers from './Answers';
 
 const Question = () => {
-  const {
-    question_list,
-    currentQuestion,
-    setIndex,
-    setCurrentQuestion,
-    currentIndex
-  } = useContext(Context);
+  const { question_list, currentQuestion, setIndex } = useContext(Context);
   console.log(question_list);
   console.log({ currentQuestion });
 
@@ -21,7 +15,13 @@ const Question = () => {
         <P>Select you answer:</P>
         {currentQuestion.title}
         <Answers answers={currentQuestion.answers} />
-        <a href="#" onClick={() => setIndex()} className="next">
+        <a
+          href="#"
+          onClick={() => {
+            setIndex();
+          }}
+          className="next"
+        >
           Next &raquo;
         </a>
       </Ul>
