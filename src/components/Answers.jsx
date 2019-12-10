@@ -4,9 +4,10 @@ import styled from 'styled-components';
 import { Context } from './ContextProvider';
 
 const Answers = ({ answers }) => {
-  const { handleChange, checkAnswer, condition, checked } = useContext(Context);
+  const { handleChange, checkAnswer, condition, setIndex } = useContext(
+    Context
+  );
   console.log({ answers });
-
   return (
     <Form>
       <Ul>
@@ -24,6 +25,9 @@ const Answers = ({ answers }) => {
           );
         })}
       </Ul>
+      <a href="#" onClick={() => setIndex()} className="next">
+        Next &raquo;
+      </a>
     </Form>
   );
 };

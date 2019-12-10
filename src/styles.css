@@ -109,3 +109,12 @@ h1 span:nth-child(14) {
   background-color: #2f70e1;
   color: #fff;
 }
+
+a {
+  cursor: pointer;
+}
+
+a:hover {
+  scale: 1.2;
+  font-weight: 800;
+}

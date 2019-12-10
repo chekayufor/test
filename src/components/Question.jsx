@@ -6,7 +6,7 @@ import Answers from './Answers';
 
 const Question = () => {
   const { question_list, currentQuestion } = useContext(Context);
-  console.log(question_list);
+  console.log(currentQuestion.answers);
   return (
     <Box>
       <Ul>
@@ -36,9 +36,10 @@ const Box = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
-  height: auto;
+  height: 770px;
+  overflow: hidden;
   @media (min-width: 600px) {
-    display: grid;
+    display: flex;
   }
 `;
 const P = styled.p`

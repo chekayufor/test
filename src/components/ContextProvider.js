@@ -6,17 +6,18 @@ const { Provider } = Context;
 
 const ContextProvider = ({ children }) => {
   const [question_list, setQuestion_list] = useState([]);
-  const [currentQuestion, setCurrentQuestion] = useState(null);
+  const [currentQuestion, setCurrentQuestion] = useState({});
   const [answer, setAnswer] = useState({});
   const [score, setScore] = useState(0);
   const [condition, setCondition] = useState(false);
   const [checked, setChecked] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     // console.log({ data });
     setQuestion_list(data);
-    setCurrentQuestion(data[0]);
-  }, []);
+    setCurrentQuestion(data[currentIndex]);
+  }, [currentIndex]);
 
 
   const handleChange = item => {
@@ -30,6 +31,11 @@ const ContextProvider = ({ children }) => {
   const checkAnswer = (item) => {
     if (item === true) setScore(score + 1);
   };
+  const setIndex = () => {
+    if (question_list.length >= currentIndex - 1)
+      setCurrentIndex(currentIndex + 1);
+    console.log({ currentIndex })
+  }
 
   const state = {
     question_list,
@@ -44,7 +50,8 @@ const ContextProvider = ({ children }) => {
     setScore,
     setAnswer,
     handleChange,
-    checkAnswer
+    checkAnswer,
+    setIndex
   };
 
   return <Provider value={{ ...state, ...actions }}> {children} </Provider>;
