@@ -1,5 +1,7 @@
 import React from 'react';
 import Question from './Question';
+import Counter from './Counter';
+import Answer from './Answer';
 import styled from 'styled-components';
 
 const App = () => {
@@ -21,7 +23,9 @@ const App = () => {
         <Span>o</Span>
         <Span>p</Span>
       </H1>
+      <Counter />
       <Question />
+      <Answer />
     </Box>
   );
 };

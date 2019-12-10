@@ -13,21 +13,22 @@ const ContextProvider = ({ children }) => {
   const [checked, setChecked] = useState('');
 
   useEffect(() => {
-    console.log({ data });
+    // console.log({ data });
     setQuestion_list(data);
     setCurrentQuestion(data[0]);
   }, []);
 
 
-  const handleChange = e => {
-    console.log('e.target.value', e.target.value)
-    setChecked(e.target.value);
-    setAnswer(e);
+  const handleChange = item => {
+    console.log(item)
+    //console.log('e.target.value', e.target.value)
+    setChecked(item);
+    setAnswer(item);
     setCondition(!condition);
   };
 
-  const checkAnswer = () => {
-    setScore(score + 1);
+  const checkAnswer = (item) => {
+    if (item === true) setScore(score + 1);
   };
 
   const state = {
@@ -35,7 +36,9 @@ const ContextProvider = ({ children }) => {
     answer,
     condition,
     checked,
-    currentQuestion
+    currentQuestion,
+    checkAnswer,
+    score
   };
   const actions = {
     setScore,
