@@ -3,9 +3,12 @@ import styled from 'styled-components';
 
 import { Context } from './ContextProvider';
 import Answers from './Answers';
+import Answer from './Answer';
 
 const Question = () => {
-  const { question_list, currentQuestion, setIndex } = useContext(Context);
+  const { question_list, currentQuestion, setIndex, checked } = useContext(
+    Context
+  );
   console.log(question_list);
   console.log({ currentQuestion });
 
@@ -24,6 +27,7 @@ const Question = () => {
         >
           Next &raquo;
         </a>
+        {checked && <Answer />}
       </Ul>
     </Box>
   );
@@ -41,7 +45,7 @@ const Box = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
-  height: 770px;
+  height: auto;
   overflow: hidden;
   @media (min-width: 600px) {
     display: flex;
@@ -50,6 +54,7 @@ const Box = styled.div`
 const P = styled.p`
   font-weight: bold;
   font-size: 2rem;
+  text-align: center;
 `;
 const Li = styled.li`
   text-align: center;
@@ -58,6 +63,14 @@ const Li = styled.li`
 `;
 const Ul = styled.ul`
   justify-content: center;
-  padding-right: 40px;
-  padding-bottom: 40px;
+  display: flex;
+  padding-left: 0;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-around;
+  padding-right: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding-bottom: 0px;
+  align-items: center;
 `;

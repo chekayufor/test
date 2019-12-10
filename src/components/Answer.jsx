@@ -17,6 +17,6 @@ const Box = styled.div`
   margin-bottom: 2%;
   text-align: center;
   font-size: 1.6rem;
-  color: white;
+  color: black;
   font-weight;
 `;
