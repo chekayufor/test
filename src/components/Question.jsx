@@ -83,13 +83,3 @@ const Button = styled.button`
     font-size: 2rem;
   }
 `;
-const StyledAnswers = styled(Answers)`
-  transform: translate(50%, -50%);
-  -webkit-transform: translate(50%, -50%);
-  -moz-transform: translate(50%, -50%);
-  width: 400px;
-  z-index: 0;
-  opacity: 0;
-  transition: all 1s;
-  box-shadow: 0 1.5em 0.5em -1em rgba(0, 0, 0, 0.25);
-`;
