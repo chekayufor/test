@@ -6,27 +6,22 @@ import Answers from './Answers';
 import Answer from './Answer';
 
 const Question = () => {
-  const { question_list, currentQuestion, setIndex, checked } = useContext(
-    Context
-  );
-  console.log(question_list);
+  const { question_list, currentQuestion, next, checked } = useContext(Context);
   console.log({ currentQuestion });
 
-  return question_list.length == 0 ? null : (
+  return question_list.length === 0 ? null : (
     <Box>
       <Ul>
         <P>Select you answer:</P>
         {currentQuestion.title}
         <Answers answers={currentQuestion.answers} />
-        <a
-          href="#"
+        <Button
           onClick={() => {
-            setIndex();
+            next();
           }}
-          className="next"
         >
-          Next &raquo;
-        </a>
+          NEXT...
+        </Button>
         {checked && <Answer />}
       </Ul>
     </Box>
@@ -56,11 +51,7 @@ const P = styled.p`
   font-size: 2rem;
   text-align: center;
 `;
-const Li = styled.li`
-  text-align: center;
-  text-transform: uppercase;
-  margin: 5rem 0 5rem 0;
-`;
+
 const Ul = styled.ul`
   justify-content: center;
   display: flex;
@@ -73,4 +64,14 @@ const Ul = styled.ul`
   margin-top: 0px;
   padding-bottom: 0px;
   align-items: center;
+`;
+
+const Button = styled.button`
+  cursor: pointer;
+  margin: 2rem 0 2rem 0;
+  font-size: 2rem;
+  color: -webkit-link;
+  text-decoration: underline;
+  font-family: 'Luckiest Guy', cursive;
+  -webkit-font-smoothing: antialiased;
 `;

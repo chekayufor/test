@@ -9,38 +9,42 @@ const ContextProvider = ({ children }) => {
   const [currentQuestion, setCurrentQuestion] = useState({});
   const [answer, setAnswer] = useState({});
   const [score, setScore] = useState(0);
-  const [condition, setCondition] = useState(false);
   const [checked, setChecked] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [clicked, setClicked] = useState(false);
+  const [color, setColor] = useState('#576ec2');
   const [gameOver, setGameOver] = useState(false);
 
 
   useEffect(() => {
-    // console.log({ data });
     setQuestion_list(data);
     setCurrentQuestion(data[currentIndex]);
+    // eslint-disable-next-line
   }, []);
 
 
   const handleChange = item => {
-    console.log(item)
+    console.log(item);
+    setColor('red')
     setClicked(true);
-    setCurrentIndex(currentIndex + 1)
     setChecked(item);
     setAnswer(item);
-    setCondition(!condition);
+    setCurrentIndex(currentIndex + 1);
+
   };
 
   const checkAnswer = (item) => {
     if (item === true && clicked === false) setScore(score + 1);
   };
-  const setIndex = () => {
+  const next = () => {
+    console.log('click')
+
     if (currentIndex >= question_list.length) {
       setGameOver(true);
       console.log(currentIndex);
     }
     else {
+      console.log(currentIndex);
       setCurrentQuestion(question_list[currentIndex]);
       setClicked(false);
     }
@@ -49,21 +53,21 @@ const ContextProvider = ({ children }) => {
   const state = {
     question_list,
     answer,
-    condition,
     checked,
     currentQuestion,
     checkAnswer,
     currentIndex,
     score,
     clicked,
-    gameOver
+    gameOver,
+    color
   };
   const actions = {
     setScore,
     setAnswer,
     handleChange,
     checkAnswer,
-    setIndex,
+    next,
     setCurrentQuestion,
     setClicked
   };

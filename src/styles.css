@@ -125,3 +125,9 @@ a:hover {
 a.disabled {
   background-color: #a9a2b5;
 }
+
+.active {
+  background-color: gold;
+  color: Black;
+  font-weight: bold;
+}

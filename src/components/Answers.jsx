@@ -1,23 +1,23 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef } from 'react';
 import styled from 'styled-components';
 
 import { Context } from './ContextProvider';
 
 const Answers = ({ answers }) => {
-  const { handleChange, checkAnswer, clicked, currentIndex } = useContext(
-    Context
-  );
-  console.log({ answers });
-  console.log({ currentIndex });
+  const { handleChange, checkAnswer, clicked, color } = useContext(Context);
+  const buttonRef = useRef(null);
 
   return (
     <Form>
       <Ul>
         {answers.map(answer => {
           return (
-            <Li
-              //disabled={clicked}
-              className={answer.clicked && 'disabled'}
+            <Button
+              // style={{ backgroundColor: color }}
+              ref={buttonRef}
+              clicked={clicked}
+              current={answer}
+              checked={answer.correct}
               key={answer.id}
               onClick={() => {
                 handleChange(answer);
@@ -26,7 +26,7 @@ const Answers = ({ answers }) => {
             >
               {answer.url !== '' && <Img src={answer.url} />}
               <P>{answer.content}</P>
-            </Li>
+            </Button>
           );
         })}
       </Ul>
@@ -34,9 +34,7 @@ const Answers = ({ answers }) => {
   );
 };
 export default Answers;
-const Box = styled.div`
-  font-size: 1.2rem;
-`;
+
 const Form = styled.div`
   min-width: 250px;
   max-width: 400px;
@@ -58,7 +56,7 @@ const Ul = styled.ul`
   align-self: center;
 `;
 
-const Li = styled.button`
+const Button = styled.li`
   border: 0;
   display: flex;
   flex-direction: column;
@@ -66,29 +64,30 @@ const Li = styled.button`
   font-size: inherit;
   outline: none;
   cursor: pointer;
-  background-color: #576ec2;
   color: #fff;
   padding: 10px 30px;
   border-radius: 5px;
   align-items: center;
-  &:hover {
-    background-color: #a9a2b5;
-  }
+  background-color: ${props => (props.clicked ? '#7291b1' : '#576ec2')};
+  border: ${props =>
+    props.clicked && props.checked ? '4px solid lightgreen' : ''};
+  background-color: ${props =>
+    props.clicked && props.checked ? 'lightgreen' : ''};
+  margin: 0 1em;
+  padding: 0.25em 1em;
+  transition: 0.5s all ease-out;
   &:active {
-    transform: translateY(1px);
+    background-color: red;
   }
+
   &:not(:last-child) {
     margin-bottom: 10px;
   }
-`;
-
-const Label = styled.label`
-  display: flex;
-  align-items: center;
-  input[type='radio'] {
-    margin: 0 10px 0 0;
+  &:hover {
+    transform: translateY(-2%);
   }
 `;
+
 const Img = styled.img`
   display: flex;
   // border: 1px solid #ddd;

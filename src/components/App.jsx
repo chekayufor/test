@@ -1,18 +1,13 @@
 import React, { useContext } from 'react';
 import Question from './Question';
 import Counter from './Counter';
-import Answer from './Answer';
 import styled from 'styled-components';
 import { Context } from './ContextProvider';
 
 const App = () => {
-  const {
-    gameOver,
-    score,
-    question_list,
-    checked,
-    currentQuestion
-  } = useContext(Context);
+  const { gameOver, score, question_list, currentQuestion } = useContext(
+    Context
+  );
   console.log({ gameOver, currentQuestion });
   return !gameOver ? (
     <Box>
