@@ -5,10 +5,8 @@ import styled from 'styled-components';
 import { Context } from './ContextProvider';
 
 const App = () => {
-  const { gameOver, score, question_list, currentQuestion } = useContext(
-    Context
-  );
-  console.log({ gameOver, currentQuestion });
+  const { gameOver, score, question_list, start } = useContext(Context);
+  console.log({ gameOver });
   return !gameOver ? (
     <Box>
       <H1>
@@ -34,6 +32,7 @@ const App = () => {
   ) : (
     <Box1>
       <H2>{`your Evaluation = ${(score / question_list.length) * 100} %`}</H2>
+      <Button onClick={() => start()}>START AGAIN</Button>
     </Box1>
   );
 };
@@ -108,4 +107,14 @@ const H2 = styled.h2`
   @media (min-width: 736px) {
     font-size: 52px;
   }
+`;
+
+const Button = styled.button`
+  cursor: pointer;
+  margin: 2rem 0 2rem 0;
+  font-size: 2rem;
+  color: -webkit-link;
+  text-decoration: underline;
+  font-family: 'Luckiest Guy', cursive;
+  -webkit-font-smoothing: antialiased;
 `;

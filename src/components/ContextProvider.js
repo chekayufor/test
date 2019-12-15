@@ -6,7 +6,6 @@ const { Provider } = Context;
 
 const ContextProvider = ({ children }) => {
   const [question_list, setQuestion_list] = useState([]);
-  const [currentQuestion, setCurrentQuestion] = useState({});
   const [answer, setAnswer] = useState({});
   const [score, setScore] = useState(0);
   const [checked, setChecked] = useState('');
@@ -18,34 +17,41 @@ const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     setQuestion_list(data);
-    setCurrentQuestion(data[currentIndex]);
     // eslint-disable-next-line
   }, []);
 
+  const start = () => {
+    setCurrentIndex(0);
 
+    setGameOver(false);
+    setScore(0);
+    setChecked('');
+    setClicked(false);
+    setAnswer({})
+  }
   const handleChange = item => {
     console.log(item);
     setColor('red')
     setClicked(true);
     setChecked(item);
     setAnswer(item);
-    setCurrentIndex(currentIndex + 1);
 
   };
 
   const checkAnswer = (item) => {
     if (item === true && clicked === false) setScore(score + 1);
   };
+
   const next = () => {
     console.log('click')
+    setCurrentIndex(currentIndex + 1);
 
-    if (currentIndex >= question_list.length) {
+    if (currentIndex >= question_list.length - 1) {
       setGameOver(true);
       console.log(currentIndex);
     }
     else {
       console.log(currentIndex);
-      setCurrentQuestion(question_list[currentIndex]);
       setClicked(false);
     }
   }
@@ -54,7 +60,6 @@ const ContextProvider = ({ children }) => {
     question_list,
     answer,
     checked,
-    currentQuestion,
     checkAnswer,
     currentIndex,
     score,
@@ -68,8 +73,8 @@ const ContextProvider = ({ children }) => {
     handleChange,
     checkAnswer,
     next,
-    setCurrentQuestion,
-    setClicked
+    setClicked,
+    start
   };
 
   return <Provider value={{ ...state, ...actions }}> {children} </Provider>;

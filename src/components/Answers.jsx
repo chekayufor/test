@@ -37,7 +37,7 @@ export default Answers;
 
 const Form = styled.div`
   min-width: 250px;
-  max-width: 400px;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,13 +47,18 @@ const Form = styled.div`
 `;
 
 const Ul = styled.ul`
-  list-style: none;
-  margin: 0 0 20px;
   padding: 0;
-  align-items: center;
+  margin: 0;
+  list-style: none;
+  width: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
-  flex-direction: column;
-  align-self: center;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
 `;
 
 const Button = styled.li`
@@ -90,13 +95,13 @@ const Button = styled.li`
 
 const Img = styled.img`
   display: flex;
-  // border: 1px solid #ddd;
-  // border-radius: 4px;
+  width: 120px;
+  height: 120px;
   padding: 5px;
   width: 100%;
   @media (min-width: 736px) {
-    width: 300px;
-    height: 300px;
+    width: 230px;
+    height: 230px;
     object-fit: cover;
   }
 `;

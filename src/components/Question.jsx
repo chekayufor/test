@@ -6,25 +6,30 @@ import Answers from './Answers';
 import Answer from './Answer';
 
 const Question = () => {
-  const { question_list, currentQuestion, next, checked } = useContext(Context);
-  console.log({ currentQuestion });
+  const { question_list, next, checked, currentIndex, gameOver } = useContext(
+    Context
+  );
 
-  return question_list.length === 0 ? null : (
-    <Box>
-      <Ul>
-        <P>Select you answer:</P>
-        {currentQuestion.title}
-        <Answers answers={currentQuestion.answers} />
-        <Button
-          onClick={() => {
-            next();
-          }}
-        >
-          NEXT...
-        </Button>
-        {checked && <Answer />}
-      </Ul>
-    </Box>
+  return (
+    question_list.length &&
+    !gameOver && (
+      <Box>
+        <Ul>
+          <P>Select you answer:</P>
+          {question_list[currentIndex].title}
+          <Answers answers={question_list[currentIndex].answers} />
+
+          <Button
+            onClick={() => {
+              next();
+            }}
+          >
+            NEXT...
+          </Button>
+          {checked && <Answer />}
+        </Ul>
+      </Box>
+    )
   );
 };
 export default Question;
