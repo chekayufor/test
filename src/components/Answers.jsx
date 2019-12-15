@@ -1,11 +1,10 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { Context } from './ContextProvider';
 
 const Answers = ({ answers }) => {
-  const { handleChange, checkAnswer, clicked, color } = useContext(Context);
-  const buttonRef = useRef(null);
+  const { handleChange, checkAnswer, clicked, current } = useContext(Context);
 
   return (
     <Form>
@@ -13,10 +12,9 @@ const Answers = ({ answers }) => {
         {answers.map(answer => {
           return (
             <Button
-              // style={{ backgroundColor: color }}
-              ref={buttonRef}
+              id={answer.id}
               clicked={clicked}
-              current={answer}
+              current={current}
               checked={answer.correct}
               key={answer.id}
               onClick={() => {
@@ -43,7 +41,7 @@ const Form = styled.div`
   justify-content: center;
   background-color: #fff;
   margin: 0 auto;
-  padding: 20px;
+  transition: all 1s;
 `;
 
 const Ul = styled.ul`
@@ -51,10 +49,6 @@ const Ul = styled.ul`
   margin: 0;
   list-style: none;
   width: 100%;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
 
   -webkit-flex-flow: row wrap;
@@ -73,18 +67,27 @@ const Button = styled.li`
   padding: 10px 30px;
   border-radius: 5px;
   align-items: center;
-  background-color: ${props => (props.clicked ? '#7291b1' : '#576ec2')};
+  background-color: #576ec2;
+  background-color: ${props => {
+    // console.log({ props });
+    return props.clicked && '#7291b1';
+  }}
+  border: ${props => {
+    // console.log(props.id, props.current.id);
+    return props.clicked && props.id === props.current.id
+      ? '4px solid red'
+      : '';
+  }}
   border: ${props =>
     props.clicked && props.checked ? '4px solid lightgreen' : ''};
   background-color: ${props =>
     props.clicked && props.checked ? 'lightgreen' : ''};
   margin: 0 1em;
   padding: 0.25em 1em;
-  transition: 0.5s all ease-out;
+  transition: 0.7s all ease-out;
   &:active {
     background-color: red;
   }
-
   &:not(:last-child) {
     margin-bottom: 10px;
   }

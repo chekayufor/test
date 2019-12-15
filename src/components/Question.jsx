@@ -35,19 +35,17 @@ const Question = () => {
 export default Question;
 
 const Box = styled.div`
-  // margin-left: 10%;
   justify-content: center;
   width: 80%;
   margin: 20px;
   background: white;
-  // padding: 1em;
   border-radius: 3px;
   display: flex;
   justify-content: center;
   align-content: center;
   height: auto;
   overflow: hidden;
-  @media (min-width: 600px) {
+  @media (min-width: 736px) {
     display: flex;
   }
 `;
@@ -74,9 +72,24 @@ const Ul = styled.ul`
 const Button = styled.button`
   cursor: pointer;
   margin: 2rem 0 2rem 0;
-  font-size: 2rem;
+  font-size: 1.2rem;
   color: -webkit-link;
   text-decoration: underline;
+  transition: 0.7s all ease-out;
+
   font-family: 'Luckiest Guy', cursive;
   -webkit-font-smoothing: antialiased;
+  @media (min-width: 736px) {
+    font-size: 2rem;
+  }
+`;
+const StyledAnswers = styled(Answers)`
+  transform: translate(50%, -50%);
+  -webkit-transform: translate(50%, -50%);
+  -moz-transform: translate(50%, -50%);
+  width: 400px;
+  z-index: 0;
+  opacity: 0;
+  transition: all 1s;
+  box-shadow: 0 1.5em 0.5em -1em rgba(0, 0, 0, 0.25);
 `;

@@ -31,7 +31,7 @@ const App = () => {
     </Box>
   ) : (
     <Box1>
-      <H2>{`your Evaluation = ${(score / question_list.length) * 100} %`}</H2>
+      <H2>{`your result = ${(score / question_list.length) * 100} %`}</H2>
       <Button onClick={() => start()}>START AGAIN</Button>
     </Box1>
   );
@@ -112,9 +112,12 @@ const H2 = styled.h2`
 const Button = styled.button`
   cursor: pointer;
   margin: 2rem 0 2rem 0;
-  font-size: 2rem;
+  font-size: 1.2rem;
   color: -webkit-link;
   text-decoration: underline;
   font-family: 'Luckiest Guy', cursive;
   -webkit-font-smoothing: antialiased;
+  @media (min-width: 736px) {
+    font-size: 2rem;
+  }
 `;

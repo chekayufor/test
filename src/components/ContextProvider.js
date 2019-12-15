@@ -9,6 +9,7 @@ const ContextProvider = ({ children }) => {
   const [answer, setAnswer] = useState({});
   const [score, setScore] = useState(0);
   const [checked, setChecked] = useState('');
+  const [current, setCurrent] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [clicked, setClicked] = useState(false);
   const [color, setColor] = useState('#576ec2');
@@ -26,14 +27,16 @@ const ContextProvider = ({ children }) => {
     setGameOver(false);
     setScore(0);
     setChecked('');
+    setCurrent('');
     setClicked(false);
     setAnswer({})
   }
   const handleChange = item => {
     console.log(item);
     setColor('red')
-    setClicked(true);
     setChecked(item);
+    setCurrent(item)
+    setClicked(true);
     setAnswer(item);
 
   };
@@ -65,7 +68,8 @@ const ContextProvider = ({ children }) => {
     score,
     clicked,
     gameOver,
-    color
+    color,
+    current
   };
   const actions = {
     setScore,

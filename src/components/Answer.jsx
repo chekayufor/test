@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import { Context } from './ContextProvider';
 
 const Answer = () => {
-  const { checked } = useContext(Context);
-  return !checked.correct ? (
+  const { checked, clicked } = useContext(Context);
+
+  if (!clicked) return <></>;
+  return clicked && !checked.correct ? (
     <Box>Your answer is not correct</Box>
   ) : (
     <Box>Your answer is correct</Box>
